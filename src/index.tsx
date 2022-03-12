@@ -1,12 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter ,
+  Router,Routes,Route, Outlet
+
+} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+
 import './index.css';
 import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+import Profile from './routes/Profile';
+import Home from './routes/Home';
+import Signin from './routes/Signin';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="signin" element={<Signin />} />
+          <Route
+            path="*"
+            element={
+              <main style={{padding: "1rem"}}>
+                  <p>This route is not found</p>
+              </main>
+            }
+          />
+        
+        </Route>
+
+
+      </Routes>
+      
+      
+    </BrowserRouter>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

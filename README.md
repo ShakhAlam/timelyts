@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# About
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Timelyts is a appointment management application made with Typescript and React
+
 
 ## Available Scripts
 
