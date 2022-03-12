@@ -16,12 +16,18 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+
 import { Link } from "react-router-dom";
+import PersistentDrawer from './PersistentDrawer';
+import { propsToClassKey } from '@mui/styles';
+import { Switch } from '@mui/material';
 
 
-const LinkWrapper = styled(Link)(({theme}) => (
+const LinkWrapper = styled(Link)(({ theme }) => (
   {
     position: 'relative',
+    textDecoration: 'none',
     //color: 'white',
     borderRadius: theme.shape.borderRadius,
     // backgroundColor: alpha(theme.palette.common.white, 0.00),
@@ -79,8 +85,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
 
+interface IPrimarySearchAppBarProps {
+  handleDarkModeChange(e: React.ChangeEvent<HTMLInputElement>): any
+  darkModeChecked: boolean
+
+}
+
+
+const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
+
+  const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -183,16 +206,41 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+  const drawerWidth = 240;
+
+
+  interface AppBarProps extends MuiAppBarProps {
+    drawerOpen?: boolean;
+  }
+
+  const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== 'drawerOpen',
+  })<AppBarProps>(({ theme, drawerOpen }) => ({
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(drawerOpen && {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: `${drawerWidth}px`,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    }),
+  }));
+
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, paddingTop: 2 }}>
+      <AppBar position="fixed" drawerOpen={drawerOpen}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            onClick={handleDrawerOpen}
+            sx={{ mr: 2, ...(drawerOpen && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -214,18 +262,24 @@ export default function PrimarySearchAppBar() {
             />
           </Search>
 
+          <Switch
+            checked={props.darkModeChecked}
+            onChange={props.handleDarkModeChange}
+            inputProps={{ 'aria-label': 'controlled' }}
+          />
+
           <div>
             <LinkWrapper to="/">
               Home
             </LinkWrapper>
             <LinkWrapper to="/profile">
-            Profile
+              Profile
             </LinkWrapper>
             <LinkWrapper to="/signin">
               Login
             </LinkWrapper>
           </div>
-        
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" >
@@ -236,7 +290,7 @@ export default function PrimarySearchAppBar() {
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-             
+
             >
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
@@ -249,7 +303,7 @@ export default function PrimarySearchAppBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-            
+
             >
               <AccountCircle />
             </IconButton>
@@ -263,14 +317,24 @@ export default function PrimarySearchAppBar() {
               onClick={handleMobileMenuOpen}
             //  color="inherit"
             >
-            
+
               <MoreIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
+
       {renderMobileMenu}
       {renderMenu}
+
+      <PersistentDrawer
+        open={drawerOpen}
+        handleDrawerClose={handleDrawerClose}
+      />
     </Box>
   );
 }
+
+
+
+export default PrimarySearchAppBar

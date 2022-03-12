@@ -2,18 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
   Outlet
 } from 'react-router-dom';
 
-import Home from './routes/Home'
-import Profile from './routes/Profile'
 import PrimarySearchAppBar from './components/PrimarySearchAppBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box, CssBaseline, Switch } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 
 
 const darkMode = createTheme({
@@ -78,7 +72,7 @@ function App() {
   const [darkModeChecked, setDarkModeChecked] = React.useState(false);
 
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDarkModeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDarkModeChecked(event.target.checked)
 
     if (darkModeChecked) {
@@ -93,14 +87,10 @@ function App() {
   return (
     <Box>
 
-      <Switch
-        checked={darkModeChecked}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'controlled' }}
-      />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <PrimarySearchAppBar />
+        <PrimarySearchAppBar  handleDarkModeChange={handleDarkModeChange}
+                              darkModeChecked={darkModeChecked} />
         <Outlet />
       </ThemeProvider>
 

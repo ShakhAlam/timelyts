@@ -4,8 +4,8 @@ import React from "react";
 function Profile(){
 
     return (
-        <main>
-            Profile
+        <main style={{ marginTop : 100  }}>
+           Profile
         </main>
     )
 }
