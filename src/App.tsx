@@ -75,13 +75,13 @@ var theme = darkMode;
 
 
 function App() {
-  const [checked, setChecked] = React.useState(false);
+  const [darkModeChecked, setDarkModeChecked] = React.useState(false);
 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
+    setDarkModeChecked(event.target.checked)
 
-    if (checked) {
+    if (darkModeChecked) {
       theme = darkMode;
     } else {
       theme = lightMode;
@@ -94,7 +94,7 @@ function App() {
     <Box>
 
       <Switch
-        checked={checked}
+        checked={darkModeChecked}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'controlled' }}
       />
