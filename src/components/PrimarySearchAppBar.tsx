@@ -85,10 +85,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+type kmEvent = (event: React.KeyboardEvent | React.MouseEvent) => void;
 
 interface IPrimarySearchAppBarProps {
   handleDarkModeChange(e: React.ChangeEvent<HTMLInputElement>): any
   darkModeChecked: boolean
+  drawerOpen: boolean
 
 }
 
@@ -97,13 +99,34 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
 
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
 
-  const handleDrawerOpen = () => {
+  const toggleDrawer =
+  (open: boolean) =>
+  (event: React.KeyboardEvent | React.MouseEvent) => {
+    console.log(`toggle drawer called open=${open} event.type=${event.type} event.target=${event.target} drawerOpen=${drawerOpen}`)
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+
+
+      return;
+    }
+     
+    setDrawerOpen(open);
+  };
+
+  
+  const handleDrawerOpen = ()  => {
     setDrawerOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = ()  => {
     setDrawerOpen(false);
   };
+
+  React.useEffect( () => { console.log(`props changed ${props.drawerOpen}`);   } 
+  )
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -239,7 +262,7 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
             size="large"
             edge="start"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={toggleDrawer(true)}
             sx={{ mr: 2, ...(drawerOpen && { display: 'none' }) }}
           >
             <MenuIcon />
@@ -329,7 +352,7 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
 
       <PersistentDrawer
         open={drawerOpen}
-        handleDrawerClose={handleDrawerClose}
+        handleDrawerClose={toggleDrawer}
       />
     </Box>
   );

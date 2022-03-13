@@ -8,6 +8,7 @@ import {
 import PrimarySearchAppBar from './components/PrimarySearchAppBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Box, CssBaseline } from '@mui/material';
+import { height, width } from '@mui/system';
 
 
 const darkMode = createTheme({
@@ -70,7 +71,7 @@ var theme = darkMode;
 
 function App() {
   const [darkModeChecked, setDarkModeChecked] = React.useState(false);
-
+  const [drawerOpen,setDrawerOpen] = React.useState(false);
 
   const handleDarkModeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDarkModeChecked(event.target.checked)
@@ -85,12 +86,16 @@ function App() {
 
 
   return (
-    <Box>
+    <Box id='mainbox' 
+      sx={{width:'100%', height:'1080px'}}>
 
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <PrimarySearchAppBar  handleDarkModeChange={handleDarkModeChange}
-                              darkModeChecked={darkModeChecked} />
+        <PrimarySearchAppBar  drawerOpen={drawerOpen} handleDarkModeChange={handleDarkModeChange}
+                              darkModeChecked={darkModeChecked} 
+                              
+                              
+                              />
         <Outlet />
       </ThemeProvider>
 

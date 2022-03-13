@@ -1,4 +1,5 @@
 import {
+    Box,
     Divider, Drawer, IconButton, List, ListItem,
     ListItemIcon, ListItemText, styled, useTheme
 } from "@mui/material";
@@ -12,26 +13,26 @@ import { Link } from "react-router-dom";
 
 const LinkWrapper = styled(Link)(({ theme }) => (
     {
-      textDecoration: 'none',
-      position: 'relative',
-      color: theme.palette.mode === 'dark' ? 'green' : 'black' ,
-      borderRadius: theme.shape.borderRadius,
-      // backgroundColor: alpha(theme.palette.common.white, 0.00),
-      // '&:hover': {
-      //   backgroundColor: alpha(theme.palette.common.white, 0.05),
-      // },
-      //marginRight: theme.spacing(2),
-    //   marginLeft: 0,
-    //   width: '100%',
-    //   [theme.breakpoints.up('sm')]: {
-    //     marginLeft: theme.spacing(3),
-    //     width: 'auto',
-    //   }
-  
-    })
-  )
+        textDecoration: 'none',
+        position: 'relative',
+        color: theme.palette.mode === 'dark' ? 'green' : 'black',
+        borderRadius: theme.shape.borderRadius,
+        // backgroundColor: alpha(theme.palette.common.white, 0.00),
+        // '&:hover': {
+        //   backgroundColor: alpha(theme.palette.common.white, 0.05),
+        // },
+        //marginRight: theme.spacing(2),
+        //   marginLeft: 0,
+        //   width: '100%',
+        //   [theme.breakpoints.up('sm')]: {
+        //     marginLeft: theme.spacing(3),
+        //     width: 'auto',
+        //   }
 
-  
+    })
+)
+
+
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -43,14 +44,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const drawerWidth = 240;
 
+type kmEvent = (e: any) => any
 
 interface IProps {
     open?: boolean,
-    handleDrawerClose(): any
+    handleDrawerClose(a: boolean): kmEvent
 }
 
 const PersistentDrawer: React.FC<IProps> = (props) => {
     const theme = useTheme();
+
 
     return (
         <Drawer
@@ -62,38 +65,46 @@ const PersistentDrawer: React.FC<IProps> = (props) => {
                     boxSizing: 'border-box',
                 },
             }}
-            variant="persistent"
+
             anchor="left"
             open={props.open}
+            onClose={props.handleDrawerClose(false)}
         >
             <DrawerHeader>
-                <IconButton onClick={props.handleDrawerClose}>
+                <IconButton onClick={props.handleDrawerClose(false)}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                 </IconButton>
             </DrawerHeader>
             <Divider />
-            <List>
-                {['Home', 'Profile', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}  component={LinkWrapper} to={ index === 0 ? "/" : '/' + text.toLowerCase()} >
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                         <ListItemText primary={text} />
+            <Box
+                sx={{ width: 250 }}
+                role="presentation"
+                onClick={props.handleDrawerClose(false)}
+                onKeyDown={props.handleDrawerClose(false)}
+            >
+                <List>
+                    {['Home', 'Profile', 'Send email', 'Drafts'].map((text, index) => (
+                        <ListItem button key={text} component={LinkWrapper} to={index === 0 ? "/" : '/' + text.toLowerCase()} >
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
 
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
+            </Box>
         </Drawer>
 
     );
