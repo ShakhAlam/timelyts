@@ -259,7 +259,7 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
 
 
   return (
-    <Box sx={{ flexGrow: 1, paddingTop: 2 }}>
+    <Box sx={{ flexGrow: 1, paddingTop: 2 , opacity:.8}}>
       <AppBar position="fixed" drawerOpen={drawerOpen}>
         <Toolbar>
           <IconButton

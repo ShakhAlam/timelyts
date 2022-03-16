@@ -97,6 +97,7 @@ const PersistentDrawer: React.FC<IProps> = (props) => {
     return (
         <Drawer
             sx={{
+                opacity:.9,
                 width: drawerWidth,
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
@@ -116,7 +117,7 @@ const PersistentDrawer: React.FC<IProps> = (props) => {
             </DrawerHeader>
             <Divider />
             <Box
-                sx={{ width: 250 }}
+                sx={{ width: 240 }}
                 role="presentation"
                 onClick={props.handleDrawerClose(false)}
                 onKeyDown={props.handleDrawerClose(false)}
