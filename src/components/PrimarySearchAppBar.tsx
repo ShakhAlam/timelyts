@@ -16,6 +16,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
+import LightModeIcon from '@mui/icons-material/LightMode';
+
+import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
+
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 
 import { Link } from "react-router-dom";
@@ -85,7 +89,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-type kmEvent = (event: React.KeyboardEvent | React.MouseEvent) => void;
+type reactKeyMouseEvent = (event: React.KeyboardEvent | React.MouseEvent) => void;
 
 interface IPrimarySearchAppBarProps {
   handleDarkModeChange(e: React.ChangeEvent<HTMLInputElement>): any
@@ -285,11 +289,14 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
             />
           </Search>
 
+          <NightlightRoundIcon sx={{color: 'lightblue'}}/>
+
           <Switch
             checked={props.darkModeChecked}
             onChange={props.handleDarkModeChange}
             inputProps={{ 'aria-label': 'controlled' }}
           />
+          <LightModeIcon  sx={{color: 'orange'}}/>
 
           <div>
             <LinkWrapper to="/">
@@ -326,7 +333,6 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-
             >
               <AccountCircle />
             </IconButton>

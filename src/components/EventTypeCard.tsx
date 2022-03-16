@@ -31,8 +31,8 @@ const BoxStyled = styled(Box)(({ theme }) => (
 
 const CardStyled = styled(Card)(
     ({ theme }) => ({
-        padding: '18px'
-
+        padding: '18px',
+        opacity: '0.8'
     }
     )
 );

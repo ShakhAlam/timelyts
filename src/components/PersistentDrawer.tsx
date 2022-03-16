@@ -8,8 +8,20 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import ProfileIcon from '@mui/icons-material/Person';
+import DraftIcon from '@mui/icons-material/Drafts';
+import CalendarIcon from '@mui/icons-material/CalendarTodayTwoTone'
+
+import ContactMailTwoToneIcon from '@mui/icons-material/ContactMailTwoTone';
+import SubscriptionsTwoToneIcon from '@mui/icons-material/SubscriptionsTwoTone';
+import PublishTwoToneIcon from '@mui/icons-material/PublishTwoTone';
+import AutomationIcon from '@mui/icons-material/PrecisionManufacturingTwoTone';
+import ReportIcon from '@mui/icons-material/AssessmentTwoTone';
+import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 
 import { Link } from "react-router-dom";
+import { link } from "fs";
 
 const LinkWrapper = styled(Link)(({ theme }) => (
     {
@@ -51,6 +63,33 @@ interface IProps {
     handleDrawerClose(a: boolean): kmEvent
 }
 
+
+var map1 = new Map([['home', <HomeIcon />],
+['calendar', <CalendarIcon />],
+['drafts', <DraftIcon />],
+['send-email', <MailIcon />],
+['contacts', <ContactMailTwoToneIcon />],
+['subscriptions',<SubscriptionsTwoToneIcon/>],
+['publish',<PublishTwoToneIcon/>],
+['automations',<AutomationIcon/>],
+['analytics',<ReportIcon/>],
+['logout',<LogoutTwoToneIcon/>]
+])
+
+const linkIconMap = (linkName: String) => {
+    let component = null;
+
+    if (!linkName)
+        component = <HomeIcon />
+    else
+        component = map1.get(linkName.toLowerCase());
+
+    if (!component)
+        component = <HomeIcon />
+
+    return component;
+}
+
 const PersistentDrawer: React.FC<IProps> = (props) => {
     const theme = useTheme();
 
@@ -83,10 +122,10 @@ const PersistentDrawer: React.FC<IProps> = (props) => {
                 onKeyDown={props.handleDrawerClose(false)}
             >
                 <List>
-                    {['Home', 'Profile', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text} component={LinkWrapper} to={index === 0 ? "/" : '/' + text.toLowerCase()} >
+                    {['Home', 'Calendar', 'Publish', 'Subscriptions', 'Contacts', 'Automations', 'Analytics'].map((text, index) => (
+                        <ListItem button key={text} component={LinkWrapper} to={index === 0 ? "/" : '/' + text.replaceAll(' ','-').toLowerCase()} >
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {linkIconMap(text)}
                             </ListItemIcon>
                             <ListItemText primary={text} />
 
@@ -95,12 +134,13 @@ const PersistentDrawer: React.FC<IProps> = (props) => {
                 </List>
                 <Divider />
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {['Logout'].map((text, index) => (
+                        <ListItem button key={text} component={LinkWrapper} to={index === 0 ? "/" : '/' + text.replaceAll(' ','-').toLowerCase()} >
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {linkIconMap(text)}
                             </ListItemIcon>
                             <ListItemText primary={text} />
+
                         </ListItem>
                     ))}
                 </List>

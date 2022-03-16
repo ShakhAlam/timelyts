@@ -7,8 +7,11 @@ import {
 
 import PrimarySearchAppBar from './components/PrimarySearchAppBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box, CssBaseline } from '@mui/material';
+import { Box, CssBaseline, styled } from '@mui/material';
 import { height, width } from '@mui/system';
+import BgNightSky01 from './images/nightsky_01.jpg';
+import BgDay01 from './images/day_01.jpg';
+//import BgDay01 from './images/nightsky_01.jpg';
 
 
 const darkMode = createTheme({
@@ -68,6 +71,20 @@ var theme = darkMode;
 //const theme = lightMode;
 
 
+const BoxStyled = styled(Box)(
+  ({ theme }) => ({
+      width:'100%', 
+      height:'1080px',
+      padding: '18px',
+      //opacity: '0.8',
+      'background-attachment': 'fixed',
+      backgroundImage: (function(theme){ console.log(theme.palette.mode); 
+                                         console.log(`url(${BgNightSky01})` );
+                                         console.log(`url(${BgDay01})` );
+                         return theme.palette.mode === 'dark'? `url(${BgNightSky01})` : `url(${BgDay01})`;})(theme) 
+  }
+  )
+);
 
 function App() {
   const [darkModeChecked, setDarkModeChecked] = React.useState(false);
@@ -86,10 +103,11 @@ function App() {
 
 
   return (
-    <Box id='mainbox' 
-      sx={{width:'100%', height:'1080px'}}>
+    <ThemeProvider theme={theme}>
+    <BoxStyled id='mainbox' 
+      >
 
-      <ThemeProvider theme={theme}>
+     
         <CssBaseline />
         <PrimarySearchAppBar  drawerOpen={drawerOpen} handleDarkModeChange={handleDarkModeChange}
                               darkModeChecked={darkModeChecked} 
@@ -97,9 +115,10 @@ function App() {
                               
                               />
         <Outlet />
-      </ThemeProvider>
+      
 
-    </Box>
+    </BoxStyled>
+    </ThemeProvider>
 
   );
 }
