@@ -74,9 +74,11 @@ var theme = darkMode;
 const BoxStyled = styled(Box)(
   ({ theme }) => ({
       width:'100%', 
-      height:'1080px',
       padding: '18px',
-      //opacity: '0.8',
+      opacity: '0.9',
+      height:"100vh",
+      display:"flex",
+      //flexDirection:"column",
       'background-attachment': 'fixed',
       backgroundImage: (function(theme){ console.log(theme.palette.mode); 
                                          console.log(`url(${BgNightSky01})` );
