@@ -249,7 +249,7 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
     }),
     ...(drawerOpen && {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: `${drawerWidth}px`,
+      //marginLeft: `${drawerWidth}px`,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
@@ -259,7 +259,7 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
 
 
   return (
-    <Box sx={{ flexGrow: 1, paddingTop: 2 , opacity:.8}}>
+    <Box id="AppBarMainBox" sx={{ flexGrow: 1, paddingTop: 2 , opacity:.8}}>
       <AppBar position="fixed" drawerOpen={drawerOpen}>
         <Toolbar>
           <IconButton
@@ -296,9 +296,10 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
             onChange={props.handleDarkModeChange}
             inputProps={{ 'aria-label': 'controlled' }}
           />
+
           <LightModeIcon  sx={{color: 'orange'}}/>
 
-          <div>
+          {/* <div>
             <LinkWrapper to="/">
               Home
             </LinkWrapper>
@@ -308,10 +309,9 @@ const PrimarySearchAppBar: React.FC<IPrimarySearchAppBarProps> = (props) => {
             <LinkWrapper to="/signin">
               Login
             </LinkWrapper>
-          </div>
+          </div> */}
 
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box id="box1" sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" >
               <Badge badgeContent={4} color="error">
                 <MailIcon />

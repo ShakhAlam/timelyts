@@ -9,7 +9,7 @@ import { green, red } from "@mui/material/colors";
 
 const BoxStyled = styled(Box)(({ theme }) => (
     {
-        color: 'blue',
+        color: 'white',
         borderTopColor: 'green',
         borderTop: 4,
         borderRadius: '2%', //theme.shape.borderRadius,

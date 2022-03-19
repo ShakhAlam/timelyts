@@ -17,7 +17,7 @@ import reportWebVitals from './reportWebVitals';
 import Profile from './routes/Profile';
 import Home from './routes/Home';
 import Signin from './routes/Signin';
-
+import Calendar from './routes/Calendar'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -27,6 +27,7 @@ ReactDOM.render(
           <Route index element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="signin" element={<Signin />} />
+          <Route path="schedules" element={<Calendar />} />
           <Route
             path="*"
             element={

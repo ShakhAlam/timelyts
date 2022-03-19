@@ -9,7 +9,7 @@ import PrimarySearchAppBar from './components/PrimarySearchAppBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Box, CssBaseline, styled } from '@mui/material';
 import { height, width } from '@mui/system';
-import BgNightSky01 from './images/nightsky_01.jpg';
+import BgNightSky01 from './images/nightsky_02.jpg';
 import BgDay01 from './images/day_01.jpg';
 //import BgDay01 from './images/nightsky_01.jpg';
 
@@ -19,7 +19,7 @@ const darkMode = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#3f51b5',
+      main: '#ccd9e0',
     },
     secondary: {
       main: '#f50057',
@@ -47,7 +47,7 @@ const lightMode = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#3f51b5',
+      main: '#000000',
     },
     secondary: {
       main: '#f50057',
@@ -57,6 +57,7 @@ const lightMode = createTheme({
     }
   },
   components: {
+
     MuiAppBar: {
       styleOverrides: {
         colorPrimary: {
@@ -67,7 +68,7 @@ const lightMode = createTheme({
   }
 });
 
-var theme = darkMode;
+var theme = lightMode;
 //const theme = lightMode;
 
 
@@ -76,14 +77,15 @@ const BoxStyled = styled(Box)(
       width:'100%', 
       padding: '18px',
       opacity: '0.9',
-      height:"100vh",
+      height:"180vh",
       display:"flex",
       //flexDirection:"column",
       'background-attachment': 'fixed',
       backgroundImage: (function(theme){ console.log(theme.palette.mode); 
                                          console.log(`url(${BgNightSky01})` );
                                          console.log(`url(${BgDay01})` );
-                         return theme.palette.mode === 'dark'? `url(${BgNightSky01})` : `url(${BgDay01})`;})(theme) 
+                        return theme.palette.mode === 'dark'? `url(${BgNightSky01})` : `url(${BgDay01})`;})(theme) 
+                        //return theme.palette.mode === 'dark'? '' : `url(${BgDay01})`;})(theme) 
   }
   )
 );
@@ -106,20 +108,20 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-    <BoxStyled id='mainbox' 
-      >
+      <BoxStyled id='mainbox' 
+        >
 
-     
-        <CssBaseline />
-        <PrimarySearchAppBar  drawerOpen={drawerOpen} handleDarkModeChange={handleDarkModeChange}
-                              darkModeChecked={darkModeChecked} 
-                              
-                              
-                              />
-        <Outlet />
       
+          <CssBaseline />
+          <PrimarySearchAppBar  drawerOpen={drawerOpen} handleDarkModeChange={handleDarkModeChange}
+                                darkModeChecked={darkModeChecked} 
+                                
+                                
+                                />
+          <Outlet />
+        
 
-    </BoxStyled>
+      </BoxStyled>
     </ThemeProvider>
 
   );

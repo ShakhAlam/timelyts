@@ -13,10 +13,10 @@ import ProfileIcon from '@mui/icons-material/Person';
 import DraftIcon from '@mui/icons-material/Drafts';
 import CalendarIcon from '@mui/icons-material/CalendarTodayTwoTone'
 
-import ContactMailTwoToneIcon from '@mui/icons-material/ContactMailTwoTone';
-import SubscriptionsTwoToneIcon from '@mui/icons-material/SubscriptionsTwoTone';
+import ContactMailTwoToneIcon from '@mui/icons-material/ContactMail';
+import SubscriptionsTwoToneIcon from '@mui/icons-material/Subscriptions';
 import PublishTwoToneIcon from '@mui/icons-material/PublishTwoTone';
-import AutomationIcon from '@mui/icons-material/PrecisionManufacturingTwoTone';
+import AutomationIcon from '@mui/icons-material/PrecisionManufacturing';
 import ReportIcon from '@mui/icons-material/AssessmentTwoTone';
 import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 
@@ -65,7 +65,7 @@ interface IProps {
 
 
 var map1 = new Map([['home', <HomeIcon />],
-['calendar', <CalendarIcon />],
+['schedules', <CalendarIcon />],
 ['drafts', <DraftIcon />],
 ['send-email', <MailIcon />],
 ['contacts', <ContactMailTwoToneIcon />],
@@ -123,7 +123,7 @@ const PersistentDrawer: React.FC<IProps> = (props) => {
                 onKeyDown={props.handleDrawerClose(false)}
             >
                 <List>
-                    {['Home', 'Calendar', 'Publish', 'Subscriptions', 'Contacts', 'Automations', 'Analytics'].map((text, index) => (
+                    {['Home', 'Schedules', 'Publish', 'Subscriptions', 'Contacts', 'Automations', 'Analytics'].map((text, index) => (
                         <ListItem button key={text} component={LinkWrapper} to={index === 0 ? "/" : '/' + text.replaceAll(' ','-').toLowerCase()} >
                             <ListItemIcon>
                                 {linkIconMap(text)}
