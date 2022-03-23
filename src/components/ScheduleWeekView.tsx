@@ -3,6 +3,7 @@ import DateTimeAutoComplete from "./DateTimeAutocomplete"
 
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ExampleSelect from "./ExampleSelect";
 
 
 interface ITimeRangeProps {
@@ -13,8 +14,8 @@ const TimeRangeView: React.FC<ITimeRangeProps> = (props) => {
     return (
         <Box sx={{ paddingTop: '10px', paddingBottom: '10px' }}>
             <Stack direction="row" spacing={2}>
-
-                <DateTimeAutoComplete label="Start" /> <DateTimeAutoComplete label="End" /> <DeleteOutlineIcon />
+                <ExampleSelect />
+                {/* <DateTimeAutoComplete label="Start" /> <DateTimeAutoComplete label="End" /> <DeleteOutlineIcon /> */}
             </Stack>
         </Box>
     )
