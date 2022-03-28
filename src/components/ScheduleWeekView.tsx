@@ -1,9 +1,11 @@
-import { Box, Button, Checkbox, Divider, Grid, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material"
+import { Box, Button, Checkbox, Divider, Grid, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack, TextField, Typography } from "@mui/material"
 import DateTimeAutoComplete from "./DateTimeAutocomplete"
 
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ExampleSelect from "./ExampleSelect";
+import { DateTimePicker, TimePicker } from "@mui/lab";
+import React from "react";
 
 
 interface ITimeRangeProps {
@@ -14,8 +16,8 @@ const TimeRangeView: React.FC<ITimeRangeProps> = (props) => {
     return (
         <Box sx={{ paddingTop: '10px', paddingBottom: '10px' }}>
             <Stack direction="row" spacing={2}>
-                <ExampleSelect />
-                {/* <DateTimeAutoComplete label="Start" /> <DateTimeAutoComplete label="End" /> <DeleteOutlineIcon /> */}
+                {/* <ExampleSelect /> */}
+                <DateTimeAutoComplete label="Start" /> <DateTimeAutoComplete label="End" /> <DeleteOutlineIcon />
             </Stack>
         </Box>
     )
@@ -27,8 +29,16 @@ interface IScheduleWeekViewDayProps {
 }
 
 
-const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = (props) => {
+const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = ({text}) => {
+    const [value, setValue] = React.useState<Date | null>(
+        new Date('2014-08-18T21:11:54'),
+      );
 
+      const handleChange = (newValue: Date | null) => {
+        setValue(newValue);
+      };
+
+      
     return (
         <Box>
             <Grid container direction="row" spacing={8}>
@@ -38,13 +48,19 @@ const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = (props) => {
                 </Grid>
                 <Grid item xs={1} sm={1} md={1} >
                     <Typography sx={{ paddingTop: '25px' }}>
-                        {props.text}
+                        {text}
 
                     </Typography>
 
                 </Grid>
-                <Grid item xs={6} sm={6} md={6} >
-                    <TimeRangeView />
+                <Grid item xs={12} sm={6} md={6} >
+                    {/* <TimeRangeView /> */}
+                    <TimePicker
+          label=""
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
                 </Grid>
                 <Grid item xs={4} sm={4} md={4} sx={{ paddingTop: '25px' }}>
                     

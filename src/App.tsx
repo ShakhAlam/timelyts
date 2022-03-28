@@ -13,6 +13,10 @@ import BgNightSky01 from './images/nightsky_02.jpg';
 import BgDay01 from './images/day_01.jpg';
 //import BgDay01 from './images/nightsky_01.jpg';
 
+// date-fns
+import DateAdapter from '@mui/lab/AdapterDateFns';
+import { LocalizationProvider } from '@mui/lab';
+
 
 const darkMode = createTheme({
   
@@ -107,6 +111,7 @@ function App() {
 
 
   return (
+    <LocalizationProvider dateAdapter={DateAdapter}>
     <ThemeProvider theme={theme}>
       <BoxStyled id='mainbox' 
         >
@@ -123,6 +128,7 @@ function App() {
 
       </BoxStyled>
     </ThemeProvider>
+    </LocalizationProvider>
 
   );
 }
