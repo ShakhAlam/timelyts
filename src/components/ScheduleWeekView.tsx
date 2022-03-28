@@ -55,7 +55,7 @@ const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = ({text}) => {
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} >
                     {/* <TimeRangeView /> */}
-                    <TimePicker onViewChange={() => {
+                    <TimePicker onOpen={() => {
     setTimeout(() => {
        const el = document.activeElement;
        if (el) {
