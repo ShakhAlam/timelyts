@@ -6,7 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ExampleSelect from "./ExampleSelect";
 import { DateTimePicker, TimePicker } from "@mui/lab";
 import React from "react";
-
+import {isMobile, isIOS} from 'react-device-detect';
 
 interface ITimeRangeProps {
 
@@ -17,7 +17,15 @@ const TimeRangeView: React.FC<ITimeRangeProps> = (props) => {
         <Box sx={{ paddingTop: '10px', paddingBottom: '10px' }}>
             <Stack direction="row" spacing={2}>
                 {/* <ExampleSelect /> */}
-                <DateTimeAutoComplete label="Start" /> <DateTimeAutoComplete label="End" /> <DeleteOutlineIcon />
+                {isMobile ? ( isIOS ? <div> <input type='time' /> <input type='time' /> </div>:  <div />) :
+
+                    (<div>
+                        <DateTimeAutoComplete label="Start" /> 
+                        <DateTimeAutoComplete label="End" /> 
+                        <DeleteOutlineIcon />
+                    </div>)
+                }
+                
             </Stack>
         </Box>
     )
@@ -29,16 +37,16 @@ interface IScheduleWeekViewDayProps {
 }
 
 
-const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = ({text}) => {
+const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = ({ text }) => {
     const [value, setValue] = React.useState<Date | null>(
         new Date('2014-08-18T21:11:54'),
-      );
+    );
 
-      const handleChange = (newValue: Date | null) => {
+    const handleChange = (newValue: Date | null) => {
         setValue(newValue);
-      };
+    };
 
-      
+
     return (
         <Box>
             <Grid container direction="row" spacing={8}>
@@ -54,25 +62,25 @@ const ScheduleWeekViewDay: React.FC<IScheduleWeekViewDayProps> = ({text}) => {
 
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} >
-                    {/* <TimeRangeView /> */}
-                    <TimePicker onOpen={() => {
-    setTimeout(() => {
-       const el = document.activeElement;
-       if (el) {
-          (el as HTMLElement).blur();
-       }
-    });
- }}
-          label=""
-          value={value}
-          onChange={handleChange}
-          renderInput={(params) => <TextField {...params} />}
-        />
+                     <TimeRangeView /> 
+                    {/* <TimePicker onOpen={() => {
+                        setTimeout(() => {
+                            const el = document.activeElement;
+                            if (el) {
+                                (el as HTMLElement).blur();
+                            }
+                        });
+                    }}
+                        label=""
+                        value={value}
+                        onChange={handleChange}
+                        renderInput={(params) => <TextField {...params} />}
+                    /> */}
                 </Grid>
                 <Grid item xs={4} sm={4} md={4} sx={{ paddingTop: '25px' }}>
-                    
+
                     <IconButton aria-label="settings">
-                                <AddCircleOutlineIcon />
+                        <AddCircleOutlineIcon />
                     </IconButton>
                 </Grid>
             </Grid>
