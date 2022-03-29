@@ -79,6 +79,7 @@ interface DateTimeOptionType {
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films: readonly DateTimeOptionType[] = [
   { title: '9:00 AM', year: 1994 },
+  { title: '9:00 PM', year: 1994 },
   { title: '10:00 AM', year: 1994 },
   { title: '11:00 AM', year: 1994 },
   { title: '12:00 PM', year: 1994 },

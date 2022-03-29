@@ -18,6 +18,7 @@ import Profile from './routes/Profile';
 import Home from './routes/Home';
 import Signin from './routes/Signin';
 import Calendar from './routes/Calendar'
+import Publish from './routes/Publish';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,6 +29,7 @@ ReactDOM.render(
           <Route path="profile" element={<Profile />} />
           <Route path="signin" element={<Signin />} />
           <Route path="schedules" element={<Calendar />} />
+          <Route path="publish" element={<Publish />} />
           <Route
             path="*"
             element={
