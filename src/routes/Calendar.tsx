@@ -1,6 +1,6 @@
 
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import EventTypeCard from '../components/EventTypeCard';
 
@@ -19,6 +19,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function Calendar() {
 
+
+    
     return (
         <Box  sx={{ justifyContent:'center',  flexGrow: 1, paddingTop: 12, width: '100%'}} >
              {/* <Typography sx={{color:'grey', fontSize: '.8rem' }}>

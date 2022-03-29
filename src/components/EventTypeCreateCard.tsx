@@ -28,7 +28,7 @@ interface IEventTypeCreateCardProps {
 const EventTypeCreateCard: React.FC<IEventTypeCreateCardProps> = ({ title, description, icon }) => {
 
 
-    const matches = useMediaQuery('(min-width:600px)');
+    const mdScreen = useMediaQuery('(min-width:600px)');
 
     return (
 
@@ -48,22 +48,25 @@ const EventTypeCreateCard: React.FC<IEventTypeCreateCardProps> = ({ title, descr
                         Create
                     </Button>
                 }
-                title={matches ? title : ''}
-                subheader={matches ? description : ''}
+                title={mdScreen ? title : ''}
+                subheader={mdScreen ? description : ''}
 
 
             />
             {
-                !matches &&
+                !mdScreen &&
 
                 <CardContent>
 
                     <Typography paragraph>
-                        <Typography>
-                        {title}
+                        <Typography sx={{ fontSize: '14px', fontWeight : 'bold'}}>
+                            {title}
                         </Typography>
-                        
-                        {description}
+
+                        <Typography sx={{ fontSize: '12px' }}>
+                            {description}
+                        </Typography>
+
 
                     </Typography>
                 </CardContent>
