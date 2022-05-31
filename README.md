@@ -1,3 +1,4 @@
+[![Board Status](https://code0ne.visualstudio.com/af9bacf7-1f61-4391-8d80-986dde574894/b63c60e3-d912-476c-a04d-3bb5a272e28d/_apis/work/boardbadge/7bd37738-ae3e-43e4-9ea7-d764309429f5)](https://code0ne.visualstudio.com/af9bacf7-1f61-4391-8d80-986dde574894/_boards/board/t/b63c60e3-d912-476c-a04d-3bb5a272e28d/Microsoft.RequirementCategory)
 # About
 
 Timelyts is a appointment management application made with Typescript and React
