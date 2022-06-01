@@ -17,40 +17,40 @@ function Home() {
 
             <Grid container spacing={1}>
                 <Grid item xs={12} sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='60' sessionType='1:1'  name='Intro to CS'/>
                 </Grid>
 
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='90' sessionType='1:1'  name='Discrete Mathematics'/>
                 </Grid>
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='30' sessionType='1:1'  name='Algorithms'/>
                 </Grid>
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='90' sessionType='1:1'  name='Scala'/>
                 </Grid>
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
-                </Grid>
-
-                <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='90' sessionType='1:1'  name='Theory of Computation'/>
                 </Grid>
 
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='60' sessionType='1:1'  name='Intro to Haskell'/>
                 </Grid>
 
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='60' sessionType='1:1' name='Operating Systems'/>
                 </Grid>
 
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='60' sessionType='1:1' name='AWS Cloud Computing'/>
                 </Grid>
 
                 <Grid item xs={12}  sm={6} md={3}>
-                    <EventTypeCard />
+                    <EventTypeCard sessionLen='60' sessionType='1:1' name='UNIX System Programming'/>
+                </Grid>
+
+                <Grid item xs={12}  sm={6} md={3}>
+                    <EventTypeCard sessionLen='90' sessionType='1:1' name='Distributed Systems'/>
                 </Grid>
             </Grid>
 

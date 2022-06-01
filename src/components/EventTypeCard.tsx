@@ -6,6 +6,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { green, red } from "@mui/material/colors";
+import StarIcon from '@mui/icons-material/Star';
 
 const BoxStyled = styled(Box)(({ theme }) => (
     {
@@ -52,7 +53,13 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-export default function EventTypeCard() {
+interface IEventTypeCardProps {
+    name: String,
+    sessionLen: String,
+    sessionType: String
+}
+
+const EventTypeCard : React.FC<IEventTypeCardProps> = (props) =>{
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -72,7 +79,7 @@ export default function EventTypeCard() {
                                 
                                 <Typography sx={{fontSize:25, borderTop:0}}>
 
-                                30
+                                {props.sessionLen}
                                 </Typography>
                                 
                             </Avatar>
@@ -82,15 +89,15 @@ export default function EventTypeCard() {
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        title="30 Minute Meeting"
-                        subheader="One:One"
+                        title={props.name}
+                        subheader={props.sessionType}
                     />
 
 
 
                     <CardActions disableSpacing>
                         <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
+                            <StarIcon />
                         </IconButton>
                         <IconButton aria-label="share">
                             <ShareIcon />
@@ -121,3 +128,7 @@ export default function EventTypeCard() {
 
     )
 }
+
+
+export default  EventTypeCard;
+

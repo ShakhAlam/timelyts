@@ -66,18 +66,30 @@ function Calendar() {
              <Grid container justifyContent="center" spacing={1} sx={{paddingTop: '24px', paddingLeft: 0}}>
                  
                  <Grid item xs={12} sm={12} md={9}>
-                   <ScheduleCard name='Work Days' />
+                   <ScheduleCard name='Sunday Evenings' />
                  </Grid>
              </Grid> 
 
 
              <Grid container   justifyContent="center"  spacing={1} sx={{paddingTop: '24px', paddingLeft: 0}}>
                  <Grid item xs={12} sm={12} md={9}>
-                   <ScheduleCard name='Vacation'/>
+                   <ScheduleCard name='Monday Mornings  '/>
                  </Grid>
              </Grid> 
 
+
+             <Grid container   justifyContent="center"  spacing={1} sx={{paddingTop: '24px', paddingLeft: 0}}>
+                 <Grid item xs={12} sm={12} md={9}>
+                   <ScheduleCard name='Tuesday and Wednesday Afternoons'/>
+                 </Grid>
+             </Grid> 
             
+
+             <Grid container   justifyContent="center"  spacing={1} sx={{paddingTop: '24px', paddingLeft: 0}}>
+                 <Grid item xs={12} sm={12} md={9}>
+                   <ScheduleCard name='Other'/>
+                 </Grid>
+             </Grid> 
         </Box>
 
 //         <Box sx={{ flexGrow: 1, paddingTop: 12 }} >

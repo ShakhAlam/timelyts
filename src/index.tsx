@@ -20,6 +20,9 @@ import Signin from './routes/Signin';
 import Calendar from './routes/Calendar'
 import Publish from './routes/Publish';
 import Subscriptions from './routes/Subscriptions';
+import Contacts from './routes/Contacts';
+import Automations from './routes/Automations';
+import BookingPage from './routes/BookingPage';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -32,6 +35,10 @@ ReactDOM.render(
           <Route path="schedules" element={<Calendar />} />
           <Route path="publish" element={<Publish />} />
           <Route path="subscriptions" element={<Subscriptions/>} />
+          <Route path="contacts" element={<Contacts />} />
+          <Route path="automations" element={<Automations />} />
+          <Route path="booking-page" element={<BookingPage />} />
+          
           <Route
             path="*"
             element={
