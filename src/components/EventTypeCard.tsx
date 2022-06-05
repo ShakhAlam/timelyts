@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { green, red } from "@mui/material/colors";
 import StarIcon from '@mui/icons-material/Star';
+import EventTypeShareModal from "./EventTypeShareModal";
 
 const BoxStyled = styled(Box)(({ theme }) => (
     {
@@ -62,15 +63,28 @@ interface IEventTypeCardProps {
 const EventTypeCard : React.FC<IEventTypeCardProps> = (props) =>{
     const [expanded, setExpanded] = React.useState(false);
 
+    const [shareModalOpen, setShareModalOpen] = React.useState(false);
+
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const handleShareClick = () => {
+        setShareModalOpen(true);
+    };
+
+    const handleShareModalClose = () => setShareModalOpen(false);
 
 
     return (
 
             <BoxStyled sx={{ borderTop: 4 }}>
-
+                <EventTypeShareModal handleClose={handleShareModalClose} 
+                                     open={shareModalOpen} 
+                                     name={props.name}
+                                     sessionLen={props.sessionLen}
+                                     sessionType={props.sessionType}/>
                 <CardStyled>
 
                     <CardHeader
@@ -100,7 +114,7 @@ const EventTypeCard : React.FC<IEventTypeCardProps> = (props) =>{
                             <StarIcon />
                         </IconButton>
                         <IconButton aria-label="share">
-                            <ShareIcon />
+                            <ShareIcon  onClick={handleShareClick}  />
                         </IconButton>
                         <ExpandMore
                             expand={expanded}
