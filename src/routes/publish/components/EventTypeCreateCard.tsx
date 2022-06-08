@@ -5,6 +5,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 
 import { isMobile } from 'react-device-detect';
+import { Link } from 'react-router-dom';
+
 
 
 const CardStyled = styled(Card)(
@@ -22,13 +24,16 @@ const CardStyled = styled(Card)(
 interface IEventTypeCreateCardProps {
     title: String,
     description: String,
+    type: String,
     icon: ReactElement<any, any>, //OverridableComponent<SvgIconTypeMap<{}, "svg">>
 };
 
-const EventTypeCreateCard: React.FC<IEventTypeCreateCardProps> = ({ title, description, icon }) => {
+const EventTypeCreateCard: React.FC<IEventTypeCreateCardProps> = ({ title, type, description, icon }) => {
 
 
     const mdScreen = useMediaQuery('(min-width:600px)');
+
+    const routeTo = "create/" + type
 
     return (
 
@@ -44,6 +49,7 @@ const EventTypeCreateCard: React.FC<IEventTypeCreateCardProps> = ({ title, descr
                 }
                 action={
                     <Button variant="outlined" startIcon={<AddCircleOutlineIcon />}
+                    component={Link} to={routeTo}
                         sx={{ borderRadius: '20px', width: '100%' }}>
                         Create
                     </Button>

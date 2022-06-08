@@ -2,7 +2,7 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { Box, Grid, useMediaQuery } from '@mui/material';
 import React from 'react';
-import EventTypeCreateCard from '../components/EventTypeCreateCard';
+import EventTypeCreateCard from './components/EventTypeCreateCard';
 
 import { DndProvider } from 'react-dnd'
 //@ts-ignore
@@ -14,6 +14,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import GroupWorkIcon from '@mui/icons-material/GroupWork';
 
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { Outlet } from 'react-router-dom';
 
 
 function Publish() {
@@ -22,11 +23,15 @@ function Publish() {
 
     return (
 
+
         <Box sx={{ justifyContent: 'center', flexGrow: 1, paddingTop: 12, width: '100%' }} >
 
             <Grid container spacing={0} sx={{ justifyContent: 'center' }}>
                 <Grid item xs={11} sm={11} md={8}>
-                    <EventTypeCreateCard title='One-on-One' description='Let an invitee pick a time to meet with you.'
+                    <EventTypeCreateCard 
+                        title='One-on-One' 
+                        type='one-on-one'
+                        description='Let an invitee pick a time to meet with you.'
                         icon={<PersonIcon />}>
 
                     </EventTypeCreateCard>
@@ -35,6 +40,7 @@ function Publish() {
                 <Grid item xs={11} sm={11} md={8}>
                     <EventTypeCreateCard
                         title='Group'
+                        type='group'
                         description='Let multiple invitees meet with you at one time.'
                         icon={<GroupsIcon />}>
 
@@ -46,6 +52,7 @@ function Publish() {
                 <Grid item xs={11} sm={11} md={8}>
                     <EventTypeCreateCard
                         title='Collective'
+                        type='collective'
                         description='Host an event with another person and let invitees pick a time when you’re all available.'
                         icon={<GroupWorkIcon />}>
                         
@@ -57,6 +64,7 @@ function Publish() {
                 <Grid item xs={11} sm={11} md={8}>
                     <EventTypeCreateCard
                         title='Round Robin'
+                        type='round-robin'
                         description='Create an event that cycles between multiple hosts.' 
                         icon={<RestartAltIcon />}> 
                     </EventTypeCreateCard>

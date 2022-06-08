@@ -58,7 +58,7 @@ export default function Contacts() {
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Upcoming" {...a11yProps(0)} />
                     <Tab label="Prospects" {...a11yProps(1)} />
-                    <Tab label="All Contacts" {...a11yProps(2)} />
+                    <Tab label="All     Contacts" {...a11yProps(2)} />
                     <Button variant="text" endIcon={<DateRangeIcon />}> Date Range</Button>
                     <Button variant="text" endIcon={<FilterAltIcon />}>Filter</Button>
 
