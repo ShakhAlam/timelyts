@@ -8,6 +8,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { green, red } from "@mui/material/colors";
 import StarIcon from '@mui/icons-material/Star';
 import EventTypeShareModal from "./EventTypeShareModal";
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from "react-router-dom";
 
 const BoxStyled = styled(Box)(({ theme }) => (
     {
@@ -113,6 +115,10 @@ const EventTypeCard : React.FC<IEventTypeCardProps> = (props) =>{
                         <IconButton aria-label="add to favorites">
                             <StarIcon />
                         </IconButton>
+                        <IconButton component={Link} to="/publish/edit/1" aria-label="add to favorites">
+                            <EditIcon />
+                        </IconButton>
+
                         <IconButton aria-label="share">
                             <ShareIcon  onClick={handleShareClick}  />
                         </IconButton>

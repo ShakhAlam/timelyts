@@ -24,6 +24,7 @@ import Contacts from './routes/Contacts';
 import Automations from './routes/Automations';
 import BookingPage from './routes/BookingPage';
 import NewSessionType from './routes/publish/NewSessionType';
+import EditSessionType from './routes/publish/EditSessionType';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -35,6 +36,7 @@ ReactDOM.render(
           <Route path="signin" element={<Signin />} />
           <Route path="schedules" element={<Calendar />} />
           <Route path="publish/create/:type" element={<NewSessionType />}/>
+          <Route path="publish/edit/:id" element={<EditSessionType />}/>          
           <Route path="publish" element={<Publish />}>
             
           </Route>

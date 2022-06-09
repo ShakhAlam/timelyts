@@ -2,14 +2,21 @@ import { alpha, Avatar, Box, Button, Card, CardActions, CardHeader, colors, Grid
 import { bottom } from "@popperjs/core";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-import PersonIcon from '@mui/icons-material/Person';
 
 import { Link } from 'react-router-dom';
 
 
 
+import PersonIcon from '@mui/icons-material/Person';
+import GroupsIcon from '@mui/icons-material/Groups';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+
 
 import React, { useState } from "react";
+import EventLocationAutoComplete from "./EventLocationAutoComplete";
+import { AnyAaaaRecord } from "dns";
 
 
 const BoxStyled = styled(Box)(({ theme }) => (
@@ -36,10 +43,6 @@ const BoxStyled = styled(Box)(({ theme }) => (
 
     }));
 
-interface INewSessionTypeCardProps {
-    type: string | undefined
-}
-
 
 const defaultValues = {
     name: "",
@@ -61,22 +64,37 @@ const CardStyled = styled(Card)(
 
 const GridStyled = styled(Grid)(
     ({ theme }) => ({
-        padding: '5px',
+        padding: '10px',
         opacity: '0.95'
     }
     )
 )
 
+
+interface INewSessionTypeCardProps {
+    type: string | undefined
+}
+
+
 const NewSessionTypeCard: React.FC<INewSessionTypeCardProps> = (props) => {
 
     const [formValues, setFormValues] = useState(defaultValues)
 
+    const iconsMap : Map<string|undefined,JSX.Element> = new Map(
+                                                [
+                                                    ['one-on-one', <PersonIcon/>],
+                                                    ['group', <GroupsIcon/> ],
+                                                    ['collective', <GroupWorkIcon />],
+                                                    ['round-robin', <RestartAltIcon />],
+                                                    
+                                                ]);
 
     const mdScreen = useMediaQuery('(min-width:600px)');
 
+   
 
-    const title = 'One-on-One'
-    const description = 'Add New Session Type'
+    const title = props.type
+    const description = 'Add New Session Type:'
 
     const handleInputChange = (e: any) => {
         const { name, value } = e.target;
@@ -86,7 +104,7 @@ const NewSessionTypeCard: React.FC<INewSessionTypeCardProps> = (props) => {
         });
     };
 
-    const routeTo = "create/";
+    const routeTo = "/publish/edit/1";
 
     return (
 
@@ -95,7 +113,7 @@ const NewSessionTypeCard: React.FC<INewSessionTypeCardProps> = (props) => {
                 <CardHeader
                     avatar={
                         <Avatar sx={{ bgcolor: colors.blue[400] }} aria-label="recipe">
-                            {<PersonIcon />}
+                            {iconsMap.get(props.type)}
                         </Avatar>
                     }
                     // action={
@@ -105,35 +123,30 @@ const NewSessionTypeCard: React.FC<INewSessionTypeCardProps> = (props) => {
                     //         Create
                     //     </Button>
                     // }
-                    title={mdScreen ? title : ''}
-                    subheader={mdScreen ? description : ''}
+                    title={mdScreen ? description : ''}
+                    subheader={mdScreen ? props.type: ''}
 
 
                 />
                 <Grid container spacing={0} sx={{ justifyContent: 'center' }}>
-                    <GridStyled item xs={11} sm={11} md={8} sx={{ padding: '5px' }}>
+                    <GridStyled item xs={11} sm={11} md={8} >
 
 
                         <TextField
                             id="name-input"
                             name="name"
-                            label="Event Name"
+                            label="Name"
                             type="string"
                             value={formValues.name}
                             onChange={handleInputChange}
+                            placeholder="Enter Session Type Name"
                         />
                     </GridStyled>
                     <GridStyled item xs={11} sm={11} md={8}>
 
-                        <TextField
-                            id="name-input"
-                            name="name"
-                            label="Location"
-                            type="string"
-                            value={formValues.name}
-                            onChange={handleInputChange}
-                        />
+                    
 
+                        <EventLocationAutoComplete label="Location" />
                     </GridStyled>
 
                     <GridStyled item xs={11} sm={11} md={8}>
@@ -145,6 +158,11 @@ const NewSessionTypeCard: React.FC<INewSessionTypeCardProps> = (props) => {
                             type="string"
                             value={formValues.name}
                             onChange={handleInputChange}
+                            multiline
+                            rows={4}
+                            sx={{ width: 400 }}
+                            // InputLabelProps={{ shrink: true }} 
+                            placeholder="Add description here"
                         />
 
                     </GridStyled>
@@ -191,7 +209,7 @@ const NewSessionTypeCard: React.FC<INewSessionTypeCardProps> = (props) => {
                 <CardActions sx={{justifyContent:"center"}}>
                     <Button size="small">Cancel</Button>
                     
-                    <Button variant="contained" size="small">Next</Button>
+                    <Button  component={Link} to={routeTo} variant="contained" size="small">Next</Button>
 
                 </CardActions>
             </CardStyled>
